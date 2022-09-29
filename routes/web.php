@@ -33,9 +33,21 @@ Route::get('/create-country', function () {
 
 Route::get('/airport', [AirportController::class, 'index']);
 
-Route::get('/create-airport', [AirportController::class, 'store']);
+Route::get('/airport/{id}', [AirportController::class, 'airportsView']);
+
+Route::get('/airport-link-airline/{id}', [AirportController::class, 'viewlinkAirline']);
+
+Route::get('/store-airport-link-airline/{id}', [AirportController::class, 'storeAirportLinkAirline']);
+
+Route::get('/create-airport', [AirportController::class, 'view']);
+
+Route::post('/update-airport-form', [AirportController::class, 'update']);
+
+Route::post('/store-airport-form', [AirportController::class, 'store']);  
 
 Route::get('country-edit/{id}', [CountriesController::class, 'edit']);   
+
+Route::get('airport-edit/{id}', [AirportController::class, 'edit']);   
 
 Route::get('airline-edit/{id}', [AirlinesController::class, 'edit']);  
 
@@ -53,6 +65,10 @@ Route::post('/store-airlines-form', [AirlinesController::class, 'store']);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/airport-unlink-airline/{id}', [AirportController::class, 'unlinkAirline'])->name('id.destroy');
+
 Route::get('/country-delete/{id}', [CountriesController::class, 'destroy'])->name('id.destroy');
+
+Route::get('/airport-delete/{id}', [AirportController::class, 'destroy'])->name('id.destroy');
 
 Route::get('/airline-delete/{id}', [AirlinesController::class, 'destroy'])->name('id.destroy');
