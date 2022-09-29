@@ -4,16 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link href='https://api.mapbox.com/mapbox-gl-js/v2.8.1/mapbox-gl.css' rel='stylesheet' />
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
+    
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -38,9 +37,7 @@
                        <img src="{{url('photos/logo.png')}}" alt="" width="30" height="27" class="d-inline-block align-text-top">
                      </a>
              
-                    <li class="nav-item">
-                        <a class="nav-link " aria-current="page" href="/">Pagrindinis</a>
-                    </li>
+       
                     <li class="nav-item">
                         <a class="nav-link " aria-current="page" href="/airport">Oro uostai</a>
                     </li>
@@ -93,12 +90,13 @@
         </nav>
       
 
-        <main class="m-3">
+        <main class="m-3 " >
             @yield('content')
         </main>
-       
+   
+
     </div>
     
- 
+    
 </body>
 </html>
