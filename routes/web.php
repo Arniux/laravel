@@ -72,3 +72,7 @@ Route::get('/country-delete/{id}', [CountriesController::class, 'destroy'])->nam
 Route::get('/airport-delete/{id}', [AirportController::class, 'destroy'])->name('id.destroy');
 
 Route::get('/airline-delete/{id}', [AirlinesController::class, 'destroy'])->name('id.destroy');
+
+Route::get('/airline-delete/{id}', [AirlinesController::class, 'destroy'])->name('id.destroy');
+
+Route::get('/search-country-form', [AirportController::class, 'searchCountry'])->name('id.destroy');
