@@ -2,16 +2,24 @@
 
 namespace App\Http\Controllers;
 use App\Models\Country;
+use App\Models\Airline;
 use Illuminate\Http\Request;
 use DB;
 
 class CountriesController extends Controller
 {
-    public function index()
-    {
+    public function index(Request $request)
+     {
 
         $country = DB::table('countries')->get();
-    	return view('countries' , ['country' => $country]);
+        $airlineRowscount = DB::table('airline')->where('airline_id')->count(); 
+        if (request('searchWithoutAirlines'))
+        {   
+            echo $airlineRowscount;
+        }
+
+        return view('countries' , ['country' => $country,'airlineRowscount' => $airlineRowscount] );
+
     }
     public function store(Request $request)
     {

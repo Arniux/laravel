@@ -9,8 +9,25 @@
         <a href="/create-country" class="btn btn-success w-25">Prideti šali</a>
         </div>
         <div class="col-6">
-        <a href="" class="btn btn-secondary">Šalys be oro liniju</a>
-        <a href="" class="btn btn-secondary">Šalys be oro liniju ir oro uostu</a>
+          <style> 
+          form {
+              box-sizing: border-box;
+              padding: 0;
+              border-radius: 0;
+              background-color: hsl(0, 0%, 100%);
+              border: 0;
+              display: inline;
+              grid-template-columns: 1fr 1fr;
+            }
+          </style>
+        <form class="">
+          <input type="hidden" class="form-control  w-25" name="searchWithoutAirlines" value="1"   type="search" placeholder="Pavadinimas" aria-label="Search">
+          <button class="btn btn-secondary" type="submit">Šalys be oro liniju</button>
+        </form>
+        <form class="">
+          <input type="hidden" class="form-control  w-25" name="searchWithoutAirlinesAndAirports"  value="0" type="search" placeholder="Pavadinimas" aria-label="Search">
+          <button class="btn btn-secondary" type="submit">Šalys be oro liniju ir oro uostu</button>
+        </form>
 
         <!-- <button type="button" class="btn btn-secondary ">Šalys be oro liniju</button> -->
         <!-- <button type="button" class="btn btn-secondary ">Šalys be oro liniju ir oro uostu</button> -->
@@ -45,6 +62,7 @@
 	  background-color: #dddddd;
 	}
 </style>
+
  <table>
  <tr>
     <th>Pavadinimas</th>
@@ -52,8 +70,10 @@
     <th>Edit</th>
     <th>Delete</th>
 </tr>
+
  @foreach($country as $key => $data)
     <tr>    
+      
       <td>{{$data->pavadinimas}}</td>
       <td>{{$data->iso}}</td> 
       <td><a href="{{ url('/country-edit', [$data->id]) }}" class="btn btn-warning"> Readeguoti</a> </td> 
@@ -61,6 +81,7 @@
     </tr>
  @endforeach
  </table>
+
  </div>
  </div>
  </div>

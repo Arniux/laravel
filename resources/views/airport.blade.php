@@ -8,18 +8,12 @@
         <!-- <button type="button" class="btn btn-success w-25">Prideti šali</button> -->
         <a href="/create-airport" class="btn btn-success w-25">Prideti oro uosta</a>
         </div>
-        <div class="col-6 d-flex justify-content-center">
-          
-        <select  id="airline_id" name="airline_id" class="form-select  d-flex w-25 "  aria-label="Default select example">
-                <option selected disabled>Select</option>
+        <div class="col-6  justify-content-center ">
 
-                @foreach($country as $key => $data)
-                    <option value="{{$data->id}}">{{$data->pavadinimas}}</option>
-                @endforeach
-                
-        </select>
-        
-        <a href="" class="btn btn-primary w-25 ">Ieškoti</a>
+        <form class="d-flex justify-content-center ">
+          <input class="form-control me-2 w-25" name="search"  type="search" placeholder="Pavadinimas" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Ieškoti</button>
+        </form>
         <!-- <button type="button" class="btn btn-secondary ">Šalys be oro liniju</button> -->
         <!-- <button type="button" class="btn btn-secondary ">Šalys be oro liniju ir oro uostu</button> -->
         </div>
@@ -33,6 +27,7 @@
               Atnaujinta
           </div>
  @endif
+
 <div class="container ">
     <div class="row  text-center">
         <div class="col-12">
@@ -53,6 +48,11 @@
 	  background-color: #dddddd;
 	}
 </style>
+@if (session('search'))
+          <div class="alert alert-danger ">
+              Oro uosto su tokiu pavadinimu nėra
+          </div>
+ @endif
  <table>
  <tr>
     <th>Pavadinimas</th>

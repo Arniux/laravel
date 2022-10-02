@@ -16,7 +16,19 @@ class AirportController extends Controller
     {
         $country = DB::table('countries')->get();
         $airport = DB::table('airports')->get();
-    	return view('airport' , ['country' => $country,'airport' => $airport]);   
+    	
+
+        if (request('search')) {
+            $airport =  DB::table('airports')->where('pavadinimas', 'like', '%' . request('search') . '%')->get();
+            if ($airport->isEmpty())
+            {
+                return redirect('airport')->with('search', 'Profile updated!');
+            }
+        }
+
+
+
+        return view('airport' , ['country' => $country,'airport' => $airport]);
     }
     public function view()
     {
@@ -125,6 +137,16 @@ class AirportController extends Controller
     	return redirect('airport')->with('status', 'Profile updated!');
     }
 
- 
+    public function  search()
+    {
+        DB::table('airports')
+        ->where('id', $id)  // find id
+        ->update(array('airline' => null));  
+    	return redirect('airport')->with('status', 'Profile updated!');
+    }
+
+
+    
+
  
 }
