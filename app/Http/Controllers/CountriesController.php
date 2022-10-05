@@ -9,17 +9,60 @@ use DB;
 class CountriesController extends Controller
 {
     public function index(Request $request)
-     {
+    {
 
         $country = DB::table('countries')->get();
-        $airlineRowscount = DB::table('airline')->where('airline_id')->count(); 
+       
         if (request('searchWithoutAirlines'))
-        {   
-            echo $airlineRowscount;
+        {      
+            $num_rows = country::where('id', '<=', '10')->count(); // counts rows
+            $check = true; // for error messages
+            $country = null;
+            for ($i = 1;$i < 100 ;$i++)
+            {
+                $airlineID = DB::Table('Airline')->where('airline_id', '=' , $i )->get();  
+                if ($airlineID->isEmpty()){
+                    $temp = DB::Table('countries')->where('id','=' ,$i )->get();            
+                    $country = $temp->merge($country);
+                    session()->now('button-glow-0', 'glow');
+                }
+                else {
+
+                } 
+            }
+            if ($country->isEmpty()){ 
+                session()->now('error-find', 'error');
+                $country = DB::Table('countries')->get();  
+            } 
         }
 
-        return view('countries' , ['country' => $country,'airlineRowscount' => $airlineRowscount] );
+        if (request('searchWithoutAirlinesAndAirports'))
+        {      
+            $num_rows = country::where('id', '<=', '10')->count(); // counts rows
+            $check = true; // for error messages
+            $country = null;
+            for ($i = 1;$i < 100 ;$i++)
+            {
+                $airlineID = DB::Table('Airline')->where('airline_id', '=' , $i )->get();
+                $airportID = DB::Table('Airports')->where('airline_id', '=' , $i )->get();  
+            
+                if ($airlineID->isEmpty() && $airportID->isEmpty()){
+                    $temp = DB::Table('countries')->where('id','=' ,$i )->get();            
+                    $country = $temp->merge($country);
+                    session()->now('button-glow-1', 'glow');
+                }
+                else {
 
+                } 
+            }
+            if ($country->isEmpty()){ 
+                session()->now('error-find-1', 'error');
+                $country = DB::Table('countries')->get();  
+            } 
+
+        }
+
+        return view('countries' , ['country' => $country,] );
     }
     public function store(Request $request)
     {

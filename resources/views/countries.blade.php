@@ -20,15 +20,27 @@
               grid-template-columns: 1fr 1fr;
             }
           </style>
-        <form class="">
-          <input type="hidden" class="form-control  w-25" name="searchWithoutAirlines" value="1"   type="search" placeholder="Pavadinimas" aria-label="Search">
-          <button class="btn btn-secondary" type="submit">Šalys be oro liniju</button>
-        </form>
-        <form class="">
-          <input type="hidden" class="form-control  w-25" name="searchWithoutAirlinesAndAirports"  value="0" type="search" placeholder="Pavadinimas" aria-label="Search">
-          <button class="btn btn-secondary" type="submit">Šalys be oro liniju ir oro uostu</button>
-        </form>
 
+    @if (session('button-glow-0'))
+          <a class="btn btn-primary" href="{{ url('/countries') }}">Šalys be oro linijų</a>
+    @else 
+    <form class="">
+          <input type="hidden" class="form-control  w-25" name="searchWithoutAirlines" value="1"   type="search" placeholder="Pavadinimas" aria-label="Search">
+          <button class="btn btn-secondary" type="submit">Šalys be oro linijų</button>
+    </form>
+    @endif
+
+    @if (session('button-glow-1'))
+          <a class="btn btn-primary" href="{{ url('/countries') }}">Šalys be oro liniju ir oro uostu</a>
+    @else 
+    <form class="">
+          <input type="hidden" class="form-control  w-25" name="searchWithoutAirlinesAndAirports"  value="1" type="search" placeholder="Pavadinimas" aria-label="Search">
+          <button class="btn btn-secondary" type="submit">Šalys be oro liniju ir oro uostu</button>
+     </form>
+    @endif
+ 
+
+ 
         <!-- <button type="button" class="btn btn-secondary ">Šalys be oro liniju</button> -->
         <!-- <button type="button" class="btn btn-secondary ">Šalys be oro liniju ir oro uostu</button> -->
         </div>
@@ -37,11 +49,20 @@
 </div>
     <div class="mt-3 h4 pb-2 mb-4  border-bottom border-secondary">
 </div>
+
 @if (session('status'))
           <div class="alert alert-success ">
               Atnaujinta
           </div>
  @endif
+ @if (session('error-find'))
+          <div class="alert alert-danger  text-center">
+              Šalių be oro linijų nėra
+          </div>
+ @endif
+
+
+
  <div class="container ">
     <div class="row  text-center">
         <div class="col-12">

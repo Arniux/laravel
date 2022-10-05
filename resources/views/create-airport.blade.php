@@ -42,12 +42,12 @@
                     <div class="container d-flex justify-content-evenly  p-1">
                         <div class="input-group input-group-sm w-25">
                              <span class="input-group-text" id="inputGroup-sizing-sm">Platuma</span>
-                         <input type="text"  id="lat" name="lat" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                         <input type="text"  id="lat" name="lat" class="form-control" required=""  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                     </div>
 
                      <div class="input-group input-group-sm w-25">
                         <span class="input-group-text" id="inputGroup-sizing-sm">Ilguma</span>
-                       <input type="text"  id="lng" name="lng" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
+                       <input type="text"  id="lng" name="lng" class="form-control" required=""  aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
                     </div>
                     </div>
                     
